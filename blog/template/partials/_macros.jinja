@@ -1,0 +1,12 @@
+{# form control #}
+{% macro form_macro(filed_name) %}
+    <div class="form-group">
+        {{ filed_name.label(class='form-control-label') }}
+        {{ filed_name(class="form-control form-control-lg") }}
+        {% if filed_name.errors %}
+            <ul class="error">
+                {% for error in filed_name.errors %}<li class="text-danger">{{ error }}</li>{% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endmacro %}

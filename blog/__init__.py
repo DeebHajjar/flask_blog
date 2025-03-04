@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask, g, render_template
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -25,6 +25,7 @@ def create_app():
         register_extention(app)
         # الموجهات وصفحات الخطأ
         register_blueprints(app)
+        register_errorhandlers(app)
         
         @app.before_request
         def before_request():
@@ -73,3 +74,14 @@ def populate_database():
         )
         db.session.add(user)
         db.session.commit()
+
+
+def register_errorhandlers(app):
+    def render_error(error):
+        error_code = getattr(error, "code", 404)
+        return render_template("main/{0}.jinja".format(error_code), error_code=error_code,
+                               title="غير متوفر"), error_code
+
+    for errcode in [404]:
+        app.errorhandler(errcode)(render_error)
+    return None
