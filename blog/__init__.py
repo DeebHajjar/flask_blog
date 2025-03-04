@@ -3,6 +3,8 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_seeder import FlaskSeeder
+from flask_login import LoginManager
+from flask_mail import Mail
 from blog.config import ProductionCfg, DevelopmentCfg
 
 
@@ -15,6 +17,12 @@ bcrypt = Bcrypt()
 db = SQLAlchemy()
 migrate = Migrate()
 seeder = FlaskSeeder()
+login_manger = LoginManager()
+mail = Mail()
+
+login_manger.login_view = "auth_controller.user_login"
+login_manger.login_message = cfg.LOGIN_MSG
+login_manger.login_message_category = "warning"
 
 
 def create_app():
@@ -41,6 +49,8 @@ def register_extention(app):
     db.init_app(app)
     migrate.init_app(app, db)
     seeder.init_app(app, db)
+    login_manger.init_app(app)
+    mail.init_app(app)
     return None
 
 

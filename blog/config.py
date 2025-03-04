@@ -34,6 +34,16 @@ class DevelopmentCfg(Config):
     CUSTOMER_COUNT = 40
     START_DATE = datetime(2023, 2, 1)
     LIKE_COUNT = 500
+    
+    LOGIN_MSG = "يجب عليك الاشتراك لمشاهدة المحتوى"
+    
+    MAIL_SERVER = 'sandbox.smtp.mailtrap.io'
+    MAIL_PORT = 2525
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    MAIL_USE_TLS = True
+    MAIL_USE_SSL = False
+    RESET_MAIL = "deebhajjar04@gmail.com"
 
 
 class ProductionCfg(Config):

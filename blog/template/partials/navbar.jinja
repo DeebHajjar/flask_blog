@@ -22,8 +22,22 @@
             </ul>
         </div>
         <ul class="navbar-nav mr-auto d-flex align-items-center">
-            <li class="nav-item mr-auto"><a class="nav-link" href="#">تسجيل الدخول</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">حساب جديد</a></li>
+          {% if current_user.is_authenticated %}
+            <li class="nav-item mr-auto">
+              <a class="nav-link" href="">حسابي {{ current_user.username }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth_controller.user_logout') }}">تسجيل الخروج</a>
+            </li>
+          {% else %}
+            <li class="nav-item mr-auto">
+              <a class="nav-link" href="{{ url_for('auth_controller.user_login') }}">تسجيل الدخول</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"
+                 href="{{ url_for('auth_controller.user_register') }}">حساب جديد</a>
+            </li>
+          {% endif %}
         </ul>
         </div>
     </nav>
