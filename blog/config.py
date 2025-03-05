@@ -37,6 +37,11 @@ class DevelopmentCfg(Config):
     
     LOGIN_MSG = "يجب عليك الاشتراك لمشاهدة المحتوى"
     
+    POSTS_PER_PAGE = 9
+    # Pagination Lists
+    RECORD_PER_PAGE = 20
+    USERS_PER_PAGE = 25
+    
     MAIL_SERVER = 'sandbox.smtp.mailtrap.io'
     MAIL_PORT = 2525
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")

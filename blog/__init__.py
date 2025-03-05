@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_seeder import FlaskSeeder
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_ckeditor import CKEditor
 from blog.config import ProductionCfg, DevelopmentCfg
 
 
@@ -19,6 +20,7 @@ migrate = Migrate()
 seeder = FlaskSeeder()
 login_manger = LoginManager()
 mail = Mail()
+ckeditor = CKEditor()
 
 login_manger.login_view = "auth_controller.user_login"
 login_manger.login_message = cfg.LOGIN_MSG
@@ -51,6 +53,7 @@ def register_extention(app):
     seeder.init_app(app, db)
     login_manger.init_app(app)
     mail.init_app(app)
+    ckeditor.init_app(app)
     return None
 
 
