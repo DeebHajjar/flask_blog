@@ -1,9 +1,11 @@
 from flask import render_template, url_for, flash, redirect, request
 from blog.models.AuthModel import User
+from blog.models.SubscribeModel import StripeCustomer
 from blog.forms.AuthForm import LoginForm, RegistrationForm, RequestResetForm, ResetPasswordForm
-from blog import bcrypt, db
+from blog import bcrypt, db, cfg
 from blog.utils.AuthUtils import send_reset_email
 from flask_login import login_user, logout_user, current_user, login_required
+from flask_paginate import Pagination
 
 
 
@@ -70,4 +72,16 @@ class UserController:
             flash('تم تغيير كلمة السر بنجاح، يمكنك تسجيل الدخول الآن', 'success')
             return redirect(url_for("auth_controller.user_login"))
         return render_template('auth/reset_pass.jinja', title='إعادة تعيين كلمة السر', form=form)
+
+    @login_required
+    def user_account():
+        if current_user.is_admin:
+            pagination = Pagination(total=len(current_user.articles))
+            return render_template("auth/account.jinja", pagination=pagination)
+        customer = StripeCustomer.query.filter_by(user_id=current_user.id).first()
+        if customer and customer.subscription_id is not None:
+            title = f"حسابي {current_user.username}"
+            return render_template("auth/account.jinja", title=title, customer=customer)
+        else:
+            return render_template("auth/account.jinja")
     
