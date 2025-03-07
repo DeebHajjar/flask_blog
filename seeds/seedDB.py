@@ -58,7 +58,7 @@ class SeedDb(Seeder):
             subscription_start = fake.date_between(start_date=cfg.START_DATE)
             db_customer = StripeCustomer(
                 user_id=subscriber.id,
-                subscription_type="month",
+                subscription_type="year",
                 status="active",
                 customer_id=fake.lexify(text="id_??????????"),
                 subscription_id=fake.lexify(text="sub_??????????"),

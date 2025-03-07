@@ -1,3 +1,4 @@
+{% from 'partials/_macros.jinja' import active %}
 <div class="container-fluid mb-4 nav-bg">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -29,20 +30,20 @@
                    aria-expanded="false">لوحة التحكم</a>
                 <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
                   <li>
-                    <a class="dropdown-item" href="#">الاشتراكات</a>
+                    <a class="dropdown-item {{ active('sub-panel/statistics') }}" href="{{ url_for('auth_controller.sub_panel') }}">الاشتراكات</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">المستخدمين</a>
+                    <a class="dropdown-item {{ active('sub-panel/users-control') }}" href="{{ url_for('auth_controller.users_control') }}">المستخدمين</a>
                   </li>
                   <li>
                     <hr class="dropdown-divider" />
                   </li>
                   <li>
-                    <a class="dropdown-item"
+                    <a class="dropdown-item {{ active('article/article_add') }}"
                        href="{{ url_for('article_controller.article_add') }}">إضافة مقالة</a>
                   </li>
                   <li>
-                    <a class="dropdown-item"
+                    <a class="dropdown-item {{ active('article/articles_list') }}"
                        href="{{ url_for('article_controller.articles_list') }}">لائحة المقالات</a>
                   </li>
                 </ul>
