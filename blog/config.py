@@ -26,6 +26,16 @@ class DevelopmentCfg(Config):
     OWNER_USERNAME = os.environ.get("OWNER_USERNAME")
     OWNER_EMAIL = os.environ.get("OWNER_EMAIL")
     OWNER_PASSWORD = os.environ.get("OWNER_PASSWORD")
+    
+    STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY")
+    STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+    STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
+    
+    prices = {
+        'yearly_subscription': os.environ.get("YEARLY_SUBSCRIPTION"),
+        'monthly_subscription': os.environ.get("MONTHLY_SUBSCRIPTION")
+    }
+    
     # Seed Data
     ACCOUNT_COUNT = 20
     ADMIN_PERCENTAGE = 10  # 10%

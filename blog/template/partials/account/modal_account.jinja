@@ -26,7 +26,7 @@
                 <button type="button"
                         class="btn btn-sm btn-secondary"
                         data-bs-dismiss="modal">تراجع</button>
-                <a href="#" class="btn btn-sm btn-danger" role="button">إلغاء اشتراكي</a>
+                <a href="{{ url_for('subscribe_controller.subscription_cancel', is_canceled = True) }}" class="btn btn-sm btn-danger" role="button">إلغاء اشتراكي</a>
             </div>
         </div>
     </div>

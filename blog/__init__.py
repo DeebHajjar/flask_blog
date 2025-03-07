@@ -1,3 +1,7 @@
+import mimetypes
+
+mimetypes.add_type('application/javascript', '.js')
+
 from flask import Flask, g, render_template
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
@@ -6,6 +10,7 @@ from flask_seeder import FlaskSeeder
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_ckeditor import CKEditor
+import stripe
 from blog.config import ProductionCfg, DevelopmentCfg
 
 
@@ -21,6 +26,8 @@ seeder = FlaskSeeder()
 login_manger = LoginManager()
 mail = Mail()
 ckeditor = CKEditor()
+
+stripe.api_key = cfg.STRIPE_SECRET_KEY
 
 login_manger.login_view = "auth_controller.user_login"
 login_manger.login_message = cfg.LOGIN_MSG

@@ -35,7 +35,7 @@
           </div>
         {% else %}
           <div class="d-grid gap-2">
-            <a href="#" class="btn mainButtonWhite" role="button">اشترك معنا لتكمل قراءة المقالة</a>
+            <a href="{{ url_for('subscribe_controller.subscription') }}" class="btn mainButtonWhite" role="button">اشترك معنا لتكمل قراءة المقالة</a>
             <a href="{{ url_for('auth_controller.user_login') }}"
                class="btn btn-outline-success"
                role="button">لديك حساب؟ سجل الدخول الآن.</a>
